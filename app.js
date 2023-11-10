@@ -478,6 +478,15 @@ createApp({
       },
     ]);
 
-    return { allContacts };
+    const fullName = ref ("");
+
+    const filteredContacts = computed (() => {
+      
+      console.log("valor del filtro fullName:" ,fullName.value);
+      return allContacts.value.filter((c)=> c.name.toLowerCase().includes(fullName.value.toLowerCase()))
+    })
+    //aunque no pongamos nada aparecen todos los nombre porque la parte derecha de la flecha se evalua como true --> return allContacts.value.filter((c)=> true)
+    return { allContacts, fullName, filteredContacts };
   },
 }).mount("#app");
+ 
